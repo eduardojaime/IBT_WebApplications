@@ -25,6 +25,8 @@ namespace MyMainWebApp
         {
             // Initialize connection to a DB > Entity Framework
             // Initialize Authentication mechanism
+
+            // enables the use of MVC controllers and views
             services.AddControllersWithViews();
         }
 
@@ -38,22 +40,41 @@ namespace MyMainWebApp
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days.You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // enable MVC pattern
             app.UseRouting();
 
             app.UseAuthorization();
 
+            // configures routing in MVC pattern
+            // add custom and specific routes first and then generic ones last
             app.UseEndpoints(endpoints =>
             {
+                // custom routes
+                //endpoints.MapControllerRoute(
+                //    name: "route-today",
+                //    pattern: "today/{controller=date}/{action=day}/{offset=0}",
+                //    dataTokens: new { source = "today" });
+                //endpoints.MapControllerRoute(
+                //        name: "route-yesterday",
+                //        pattern: "yesterday/{controller=date}/{action=day}/{offset=-1}",
+                //        dataTokens: new { source = "yesterday" });
+                //endpoints.MapControllerRoute(
+                //    name: "route-tomorrow",
+                //    pattern: "tomorrow/{controller=date}/{action=day}/{offset=1}",
+                //    dataTokens: new { source = "tomorrow" });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+                      
+
         }
     }
 }

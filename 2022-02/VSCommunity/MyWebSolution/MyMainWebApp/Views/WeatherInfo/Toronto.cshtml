@@ -1,0 +1,56 @@
+﻿@model WeatherInfoViewModel
+
+@{
+    var pageTitle = ViewData["PageTitle"];
+    var infoSource = ViewData["InfoSource"];
+
+    var currTime = ViewBag.CurrentTime;
+    var currTimeForDisplay = ViewBag.CurrentTimeForDisplay;
+}
+
+
+<h1>Welcome to TO!</h1>
+
+<p>
+    <!-- Message -->
+    @pageTitle
+</p>
+<p>
+    <!-- Info Source -->
+    Information provided by: @infoSource
+</p>
+<p>
+    Our current time: @currTimeForDisplay
+</p>
+
+<p>
+    Forecast for @Model.City
+    Temperature right now is @Model.TempC
+    Information retrieved from @Model.Source
+</p>
+
+<p>
+    @Html.TextBox("City", Model.City)
+    <input type="text" id="City" name="City" asp-for="City" />
+</p>
+<p>
+    <div class="form-group">
+        <label class="col-md-4 control-label" asp-for="City"></label>
+        <div class="col-md-4">
+            <input class="form-control input-lg" asp-for="City" type="email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label" asp-for="TempC"></label>
+        <div class="col-md-4">
+            <input class="form-control input-lg" asp-for="TempC">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label" asp-for="Source"></label>
+        <div class="col-md-4">
+            <input class="form-control input-lg" asp-for="Source">
+        </div>
+    </div>
+    <button id="btnSave">Save</button>
+</p>
